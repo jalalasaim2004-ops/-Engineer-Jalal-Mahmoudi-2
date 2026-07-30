@@ -44,7 +44,7 @@ export default function AboutSection() {
                 style={{ borderRadius: '16px', border: '1px solid rgba(0,212,255,0.2)' }}
               >
                 <img
-                  src="/jalal.jpg"
+                  src={`${import.meta.env.BASE_URL}jalal.jpg`}
                   alt="جلال المحمودي"
                   style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
                 />

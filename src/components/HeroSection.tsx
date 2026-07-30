@@ -257,7 +257,7 @@ export default function HeroSection({ mouse }: HeroSectionProps) {
             <MagneticButton href="#projects" primary>
               استعرض الأعمال 🔥
             </MagneticButton>
-            <MagneticButton href="/Jalal_Mahmoudi_CV.pdf" download="Jalal_Mahmoudi_CV.pdf">
+            <MagneticButton href={`${import.meta.env.BASE_URL}Jalal_Mahmoudi_CV.pdf`} download="Jalal_Mahmoudi_CV.pdf">
               تحميل السيرة الذاتية 📄
             </MagneticButton>
             <MagneticButton href="#contact">
