@@ -12,7 +12,8 @@ export default function ProtectedRoute({ children }: { children: React.ReactNode
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: '#04050f',
+          background: '#0f172a',
+          color: '#fff'
         }}
       >
         <div

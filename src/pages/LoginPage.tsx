@@ -35,7 +35,7 @@ export default function LoginPage() {
       dir="rtl"
       style={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #04050f 0%, #0a0d1f 50%, #04050f 100%)',
+        background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

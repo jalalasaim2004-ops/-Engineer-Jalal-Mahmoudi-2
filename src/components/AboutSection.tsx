@@ -46,7 +46,7 @@ export default function AboutSection() {
                 <img
                   src="/jalal.jpg"
                   alt="جلال المحمودي"
-                  style={{ width: '100%', height: 320, objectFit: 'cover', display: 'block' }}
+                  style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
                 />
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(4,5,15,0.85) 0%, rgba(4,5,15,0.1) 60%)' }} />
                 <div className="absolute bottom-0 right-0 left-0 p-5">

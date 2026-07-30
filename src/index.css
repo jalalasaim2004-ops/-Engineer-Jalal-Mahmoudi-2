@@ -8,9 +8,9 @@
 }
 
 :root {
-  --background: #04050f;
-  --foreground: #e8eaf6;
-  --card: rgba(255,255,255,0.04);
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --card: rgba(255,255,255,0.03);
   --card-border: rgba(255,255,255,0.08);
   --primary: #00d4ff;
   --secondary: #7928ca;

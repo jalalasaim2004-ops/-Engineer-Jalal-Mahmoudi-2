@@ -784,7 +784,7 @@ export default function AdminDashboard() {
       dir="rtl"
       style={{
         minHeight: '100vh', display: 'flex',
-        background: 'linear-gradient(135deg, #04050f 0%, #07091a 100%)',
+        background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
         fontFamily: "'Cairo', 'Tajawal', sans-serif",
         color: '#fff',
       }}
