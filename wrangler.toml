@@ -1,0 +1,5 @@
+name = "engineer-jalal-mahmoudi-2"
+main = "src/worker.js"
+compatibility_date = "2026-10-13"
+account_id = "YOUR_ACCOUNT_ID"
+workers_dev = false
