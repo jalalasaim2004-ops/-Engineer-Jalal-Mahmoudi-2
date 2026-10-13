@@ -29,8 +29,11 @@ jobs:
       - name: Build project
         run: pnpm run build
 
-      - name: Deploy (GitHub Pages)
+      - name: Deploy to Cloudflare Pages
         if: github.ref == 'refs/heads/main'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: pnpm run deploy
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          projectName: ${{ secrets.CF_PROJECT_NAME }}
+          directory: ./dist
