@@ -106,9 +106,10 @@ function MainSite() {
 }
 
 export default function App() {
+  const base = import.meta.env.BASE_URL.startsWith('.') ? '/' : import.meta.env.BASE_URL
   return (
     <AuthProvider>
-      <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <BrowserRouter basename={base}>
         <Routes>
           <Route path="/" element={<MainSite />} />
           <Route path="/admin/login" element={<LoginPage />} />
