@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../firebase'
+import { useLanguage } from '../contexts/LanguageContext'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -162,6 +163,8 @@ function ContactForm() {
 }
 
 export default function ContactSection() {
+  const { t } = useLanguage()
+
   return (
     <motion.section
       id="contact"
@@ -176,17 +179,16 @@ export default function ContactSection() {
           <div className="md:col-span-5">
             <motion.div variants={fadeUp}>
               <p className="text-xs font-mono mb-2" style={{ color: 'var(--primary)', fontFamily: 'var(--font-mono)' }}>
-                04 / تواصل
+                {t('contact.badge')}
               </p>
               <h2
                 className="font-black text-4xl leading-tight mb-6"
                 style={{ color: 'var(--foreground)', letterSpacing: '-0.02em' }}
               >
-                لنبني شيئًا{' '}
-                <span className="gradient-text">رائعًا</span>
+                {t('contact.title')}
               </h2>
               <p className="text-base leading-relaxed mb-8" style={{ color: 'var(--muted-foreground)' }}>
-                سواء كنت تملك فكرة مشروع طموح أو تبحث عن مهندس يشاركك رؤيتك البرمجية والتقنية — أنا هنا دائماً للاستماع والتعاون.
+                {t('contact.desc')}
               </p>
             </motion.div>
 

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useLanguage } from '../contexts/LanguageContext'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -6,6 +7,8 @@ const fadeUp = {
 }
 
 export default function AboutSection() {
+  const { t, lang } = useLanguage()
+
   return (
     <motion.section
       id="about"
@@ -20,10 +23,10 @@ export default function AboutSection() {
         <motion.div variants={fadeUp} className="mb-16 flex items-end justify-between flex-wrap gap-4">
           <div>
             <p className="text-xs font-mono mb-2" style={{ color: 'var(--primary)', fontFamily: 'var(--font-mono)' }}>
-              01 / عني
+              {t('about.badge')}
             </p>
             <h2 className="font-black leading-tight" style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', color: 'var(--foreground)', letterSpacing: '-0.03em' }}>
-              من أنا؟
+              {t('about.title')}
             </h2>
           </div>
           <div className="h-px flex-1 min-w-12 mx-6" style={{ background: 'linear-gradient(to left, transparent, var(--border))' }} />
@@ -94,12 +97,11 @@ export default function AboutSection() {
 
             {/* Bio */}
             <motion.div variants={fadeUp} className="space-y-4">
-              <p className="text-lg leading-loose" style={{ color: 'var(--muted-foreground)' }}>
-                مهندس برمجيات بخبرة أكثر من <span style={{ color: 'var(--primary)', fontWeight: 700 }}>ثماني سنوات</span> في تصميم وبناء الأنظمة الموزعة عالية الأداء.
-                أعمل في تقاطع هندسة البرمجيات والذكاء الاصطناعي التطبيقي، حيث أحوّل المشاكل المعقدة إلى بنى تقنية أنيقة وقابلة للتوسع.
+              <p className="text-lg leading-loose text-gray-300">
+                {t('about.p1')}
               </p>
-              <p className="text-lg leading-loose" style={{ color: 'var(--muted-foreground)' }}>
-                قدت فرقًا هندسية في شركات ناشئة ومؤسسات حكومية، وشاركت في تصميم أنظمة تخدم <span style={{ color: 'var(--primary)', fontWeight: 700 }}>ملايين المستخدمين</span> يوميًا. أؤمن بأن الكود الجيد يشبه الهندسة المعمارية: وظيفي وجميل في آنٍ واحد.
+              <p className="text-lg leading-loose text-gray-300">
+                {t('about.p2')}
               </p>
             </motion.div>
 

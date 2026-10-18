@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useLanguage } from '../contexts/LanguageContext'
 
 const SKILLS = [
   { name: 'Python & FastAPI', pct: 92, color: '#00d4ff' },
@@ -62,6 +63,8 @@ function AnimatedSkillBar({ skill, delay }: { skill: typeof SKILLS[0]; delay: nu
 }
 
 export default function SkillsSection() {
+  const { t } = useLanguage()
+
   return (
     <motion.section
       id="skills"
@@ -74,13 +77,13 @@ export default function SkillsSection() {
       <div className="max-w-7xl mx-auto px-6">
         <motion.div variants={fadeUp} className="mb-16">
           <p className="text-xs font-mono mb-2" style={{ color: 'var(--primary)', fontFamily: 'var(--font-mono)' }}>
-            02 / المهارات
+            {t('skills.badge')}
           </p>
           <h2
             className="font-black text-4xl"
             style={{ color: 'var(--foreground)', letterSpacing: '-0.02em' }}
           >
-            الأدوات والتقنيات
+            {t('skills.title')}
           </h2>
         </motion.div>
 

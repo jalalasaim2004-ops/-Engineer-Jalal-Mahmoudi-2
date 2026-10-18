@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { AuthProvider } from './contexts/AuthContext'
+import { LanguageProvider, useLanguage } from './contexts/LanguageContext'
 import ProtectedRoute from './components/ProtectedRoute'
 import AIBackground from './AIBackground'
 import Navbar from './components/Navbar'
@@ -9,24 +10,18 @@ import HeroSection from './components/HeroSection'
 import AboutSection from './components/AboutSection'
 import SkillsSection from './components/SkillsSection'
 import ProjectsSection from './components/ProjectsSection'
+import ArticlesSection from './components/ArticlesSection'
 import ContactSection from './components/ContactSection'
 import Footer from './components/Footer'
 import LoginPage from './pages/LoginPage'
 import AdminDashboard from './pages/AdminDashboard'
-
-const NAV_ITEMS = [
-  { label: 'الرئيسية', href: '#hero' },
-  { label: 'عني', href: '#about' },
-  { label: 'المهارات', href: '#skills' },
-  { label: 'المشاريع', href: '#projects' },
-  { label: 'تواصل', href: '#contact' },
-]
 
 function MainSite() {
   const [mouse, setMouse] = useState({ x: 0, y: 0 })
   const [cursorPos, setCursorPos] = useState({ x: -100, y: -100 })
   const [navOpen, setNavOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('hero')
+  const { isRTL } = useLanguage()
 
   const { scrollYProgress } = useScroll()
   const progressWidth = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
@@ -44,7 +39,7 @@ function MainSite() {
   }, [])
 
   useEffect(() => {
-    const ids = ['hero', 'about', 'skills', 'projects', 'contact']
+    const ids = ['hero', 'about', 'skills', 'projects', 'articles', 'contact']
     const obs = new IntersectionObserver(
       (entries) => entries.forEach(e => { if (e.isIntersecting) setActiveSection(e.target.id) }),
       { threshold: 0.3 }
@@ -54,7 +49,10 @@ function MainSite() {
   }, [])
 
   return (
-    <div style={{ background: 'var(--background)', minHeight: '100vh', overflowX: 'hidden' }}>
+    <div
+      dir={isRTL ? 'rtl' : 'ltr'}
+      style={{ background: 'var(--background)', minHeight: '100vh', overflowX: 'hidden' }}
+    >
       {/* Dynamic Canvas Background */}
       <AIBackground />
 
@@ -86,7 +84,6 @@ function MainSite() {
 
       {/* Header Navbar */}
       <Navbar
-        navItems={NAV_ITEMS}
         activeSection={activeSection}
         navOpen={navOpen}
         setNavOpen={setNavOpen}
@@ -98,6 +95,7 @@ function MainSite() {
         <AboutSection />
         <SkillsSection />
         <ProjectsSection />
+        <ArticlesSection />
         <ContactSection />
         <Footer />
       </div>
@@ -109,28 +107,30 @@ export default function App() {
   const base = import.meta.env.BASE_URL.startsWith('.') ? '/' : import.meta.env.BASE_URL
   return (
     <AuthProvider>
-      <BrowserRouter basename={base}>
-        <Routes>
-          <Route path="/" element={<MainSite />} />
-          <Route path="/admin/login" element={<LoginPage />} />
-          <Route
-            path="/admin"
-            element={
-              <ProtectedRoute>
-                <AdminDashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin/*"
-            element={
-              <ProtectedRoute>
-                <AdminDashboard />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+      <LanguageProvider>
+        <BrowserRouter basename={base}>
+          <Routes>
+            <Route path="/" element={<MainSite />} />
+            <Route path="/admin/login" element={<LoginPage />} />
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute>
+                  <AdminDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/*"
+              element={
+                <ProtectedRoute>
+                  <AdminDashboard />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </LanguageProvider>
     </AuthProvider>
   )
 }

@@ -1,4 +1,8 @@
+import { useLanguage } from '../contexts/LanguageContext'
+
 export default function Footer() {
+  const { t } = useLanguage()
+
   return (
     <footer
       className="border-t py-8"
@@ -17,10 +21,10 @@ export default function Footer() {
           JM
         </span>
         <p className="text-xs" style={{ color: 'var(--muted-foreground)' }}>
-          © {new Date().getFullYear()} جلال المحمودي — جميع الحقوق محفوظة
+          {t('footer.rights')}
         </p>
         <p className="text-xs font-mono" style={{ color: 'var(--muted-foreground)', fontFamily: 'var(--font-mono)' }}>
-          Riyadh · SA · v2.5 Pro
+          Riyadh · Global · v3.0 Pro
         </p>
       </div>
     </footer>

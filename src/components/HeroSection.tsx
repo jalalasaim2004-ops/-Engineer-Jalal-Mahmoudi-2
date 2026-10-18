@@ -3,6 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { MeshDistortMaterial, Float, Environment, Torus } from '@react-three/drei'
 import * as THREE from 'three'
 import { motion } from 'framer-motion'
+import { useLanguage } from '../contexts/LanguageContext'
 
 // ─── 3D Sphere Component ──────────────────────────────────────────────────
 function AnimatedSphere() {
@@ -160,6 +161,7 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({ mouse }: HeroSectionProps) {
+  const { t } = useLanguage()
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
       {/* 3D Canvas */}
@@ -215,7 +217,7 @@ export default function HeroSection({ mouse }: HeroSectionProps) {
               }}
             >
               <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: 'var(--primary)', boxShadow: '0 0 6px var(--primary)' }} />
-              متاح للمشاريع والحلول التقنية المتقدمة — 2025
+              {t('hero.badge')}
             </div>
           </motion.div>
 
@@ -225,43 +227,56 @@ export default function HeroSection({ mouse }: HeroSectionProps) {
             transition={{ delay: 0.35, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="font-black leading-none mb-4"
             style={{
-              fontSize: 'clamp(3.5rem, 8vw, 6.5rem)',
+              fontSize: 'clamp(3.2rem, 7.5vw, 6rem)',
               letterSpacing: '-0.03em',
               color: 'var(--foreground)',
             }}
           >
-            جلال
+            {t('hero.title.prefix')}
             <br />
-            <span className="gradient-text-animate">المحمودي</span>
+            <span className="gradient-text-animate">{t('hero.title.name')}</span>
           </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.55, duration: 0.7 }}
+            className="text-lg md:text-xl font-light mb-4"
+            style={{ color: 'var(--muted-foreground)' }}
+          >
+            <span style={{ color: 'var(--primary)', fontWeight: 600 }}>
+              <TypedText texts={[
+                t('hero.typed.1'),
+                t('hero.typed.2'),
+                t('hero.typed.3'),
+                t('hero.typed.4')
+              ]} />
+            </span>
+          </motion.div>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.55, duration: 0.7 }}
-            className="text-xl font-light mb-3"
-            style={{ color: 'var(--muted-foreground)' }}
+            transition={{ delay: 0.62, duration: 0.7 }}
+            className="text-sm md:text-base text-gray-300 leading-relaxed mb-6 max-w-xl"
           >
-            مهندس برمجيات ·{' '}
-            <span style={{ color: 'var(--primary)' }}>
-              <TypedText texts={['بناء الأنظمة الموزعة', 'ذكاء اصطناعي تطبيقي', 'هندسة الحلول السحابية']} />
-            </span>
+            {t('hero.desc')}
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.7 }}
-            className="flex flex-wrap gap-4 mt-10"
+            className="flex flex-wrap gap-4 mt-8"
           >
             <MagneticButton href="#projects" primary>
-              استعرض الأعمال 🔥
+              {t('hero.btn.projects')} 🔥
             </MagneticButton>
-            <MagneticButton href={`${import.meta.env.BASE_URL}Jalal_Mahmoudi_CV.pdf`} download="Jalal_Mahmoudi_CV.pdf">
-              تحميل السيرة الذاتية 📄
+            <MagneticButton href="./Jalal_Mahmoudi_CV.pdf" download="Jalal_Mahmoudi_CV.pdf">
+              {t('hero.btn.cv')} 📄
             </MagneticButton>
             <MagneticButton href="#contact">
-              تواصل معي ⚡
+              {t('hero.btn.contact')} ⚡
             </MagneticButton>
           </motion.div>
 
@@ -270,17 +285,17 @@ export default function HeroSection({ mouse }: HeroSectionProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 0.8 }}
-            className="flex flex-wrap gap-8 mt-14"
+            className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-12 pt-8 border-t border-white/10"
           >
             {[
-              { v: '8+', l: 'سنوات خبرة' },
-              { v: '20+', l: 'مشروع ناجح' },
-              { v: '5M+', l: 'مستخدم نهائي' },
-              { v: '97%', l: 'رضا العملاء' },
+              { v: '5+', l: t('stats.experience') },
+              { v: '25+', l: t('stats.projects') },
+              { v: '97.3%', l: t('stats.accuracy') },
+              { v: '99.9%', l: t('stats.uptime') },
             ].map(s => (
               <div key={s.l}>
                 <div
-                  className="text-3xl font-black"
+                  className="text-2xl md:text-3xl font-black"
                   style={{
                     fontFamily: 'var(--font-orbitron)',
                     color: 'var(--primary)',
@@ -289,7 +304,7 @@ export default function HeroSection({ mouse }: HeroSectionProps) {
                 >
                   {s.v}
                 </div>
-                <div className="text-xs mt-0.5" style={{ color: 'var(--muted-foreground)' }}>{s.l}</div>
+                <div className="text-xs mt-1" style={{ color: 'var(--muted-foreground)' }}>{s.l}</div>
               </div>
             ))}
           </motion.div>
